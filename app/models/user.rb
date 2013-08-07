@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :services, :dependent => :destroy
+
+  def to_s
+    self.display_name
+  end
 end

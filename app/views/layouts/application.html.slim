@@ -1,0 +1,26 @@
+doctype html
+html
+	head
+	  title TerasologyMods
+	  = stylesheet_link_tag    "application", :media => "all"
+	  = javascript_include_tag "application"
+	  = csrf_meta_tags
+
+body
+
+  .navbar
+    .container
+      a.navbar-brand TerasologyMods
+
+      ul.nav.navbar-nav
+        li.active: a Recent
+        li: a Updated
+        li: a Popular
+
+      - if user_signed_in?
+        a.btn.navbar-btn.btn-default.pull-right x
+        p.navbar-text.pull-right
+          | Signed in as 
+          a= current_user
+
+  = yield

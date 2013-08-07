@@ -1,4 +1,35 @@
-- if current_user
-	= current_user.display_name
-- else
-	= notice
+.container
+	.row
+    .col-lg-9
+      - 10.times do
+        .panel
+          .panel-heading
+            h3.panel-title Project name
+            ul.list-inline.pull-right
+              li: a.label.label-success Category 1
+              li: a.label.label-success Category 2
+              li: a.label.label-success Category 3
+
+          .body
+            p.lead.text-muted Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique in velit eu consectetur. Donec quis odio non leo rhoncus malesuada quis a velit. Vivamus congue nunc pellentesque nisl sodales, quis consectetur sapien dapibus.
+
+          .panel-footer
+            .pull-left.author
+              = image_tag avatar_url(current_user), size: '14x14'
+              a Mike Bajur
+            .pull-right.github-stats
+              ul.list-inline
+                li: a.label.label-default title="Stargazers" 12
+                li: a.label.label-default title="Forks" 0
+                li: a.label.label-default title="Issues" 4
+                li: a.label.label-default title="Homepage" H
+            .clearfix
+
+    .col-lg-3
+      .panel
+        .panel-heading Categories
+        ul.list-group
+          li.list-group-item.active: a Any
+          li.list-group-item: a First category
+          li.list-group-item: a Second category
+          li.list-group-item: a Third category
