@@ -1,0 +1,57 @@
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :g_id %><br />
+    <%= f.number_field :g_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.label :homepage %><br />
+    <%= f.text_field :homepage %>
+  </div>
+  <div class="field">
+    <%= f.label :forks_count %><br />
+    <%= f.number_field :forks_count %>
+  </div>
+  <div class="field">
+    <%= f.label :watchers_count %><br />
+    <%= f.number_field :watchers_count %>
+  </div>
+  <div class="field">
+    <%= f.label :open_issues_count %><br />
+    <%= f.number_field :open_issues_count %>
+  </div>
+  <div class="field">
+    <%= f.label :g_updated_at %><br />
+    <%= f.datetime_select :g_updated_at %>
+  </div>
+  <div class="field">
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
