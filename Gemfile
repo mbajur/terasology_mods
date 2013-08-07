@@ -12,6 +12,8 @@ gem 'slim'
 gem 'less-rails'
 
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-github'
 
 
 # Gems used only for assets and not required
