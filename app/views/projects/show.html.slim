@@ -1,8 +1,7 @@
 .container
   .row
     .col-lg-9
-      - @projects.each do |project|
-        = render 'single', project: project
+      = render 'single', project: @project
 
     .col-lg-3
       = render 'sidebar/widget_categories'

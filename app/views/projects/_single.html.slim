@@ -1,0 +1,30 @@
+.panel
+  .panel-heading
+    h3.panel-title.pull-left 
+      = link_to project.name, project
+    ul.list-inline.pull-right
+      - project.categories.each do |category|
+        li: a.label.label-success href=category_path(category) = category.name
+    .clearfix
+
+  .body
+    p.lead.text-muted = project.description
+
+  .panel-footer
+    .pull-left.author
+      = image_tag avatar_url(project.user), size: '14x14'
+      a = project.user
+    .pull-right.github-stats
+      ul.list-inline
+        li: a.label.label-default href=repository_page_url(project, 'stargazers') title="Stargazers"
+          i.icon-star>
+          = project.watchers_count
+        li: a.label.label-default href=repository_page_url(project, 'network') title="Forks" 
+          i.icon-code-fork>
+          = project.forks_count
+        li: a.label.label-default href=repository_page_url(project, 'issues') title="Issues"
+          i.icon-exclamation>
+          = project.open_issues_count
+        li: a.label.label-default href=project.url title="Homepage"
+          i.icon-home
+    .clearfix

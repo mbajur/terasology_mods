@@ -1,9 +1,10 @@
 class ProjectsController < ApplicationController
+  before_filter :get_categories
+
   # GET /projects
   # GET /projects.json
   def index
     @projects = Project.all
-    @categories = Project.tag_counts_on(:categories)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -12,7 +13,8 @@ class ProjectsController < ApplicationController
   end
 
   def category
-    @projects = Project.tagged_with(params[:id], :on => :categories)
+    @tag      = ActsAsTaggableOn::Tag.find(params[:category_id])
+    @projects = Project.tagged_with(@tag.name, :on => :categories)
   end
 
   # GET /projects/1
@@ -116,5 +118,10 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def get_categories
+    @categories = Project.tag_counts_on(:categories)
   end
 end

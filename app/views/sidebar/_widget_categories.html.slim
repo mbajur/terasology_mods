@@ -1,0 +1,6 @@
+.panel
+  .panel-heading Categories
+  ul.list-group
+    li.list-group-item.active: a href=root_path Any
+    - @categories.each do |category|
+      li.list-group-item: a href=category_path(category) = category.name
