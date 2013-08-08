@@ -3,11 +3,16 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
+    @categories = Project.tag_counts_on(:categories)
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
     end
+  end
+
+  def category
+    @projects = Project.tagged_with(params[:id], :on => :categories)
   end
 
   # GET /projects/1

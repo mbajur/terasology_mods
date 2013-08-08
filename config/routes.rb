@@ -1,6 +1,7 @@
 TerasologyMods::Application.routes.draw do
   resources :projects do
   	get 'import/:username/:name', to: 'projects#import', :on => :collection, :as => :import_repo
+  	get 'category/:id', to: 'projects#category', :on => :collection, :as => :category
   end
 
   devise_for :users

@@ -19,6 +19,8 @@ gem 'octokit'
 
 gem 'acts-as-taggable-on'
 
+gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'master' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

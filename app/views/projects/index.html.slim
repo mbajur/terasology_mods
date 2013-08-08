@@ -37,7 +37,6 @@
       .panel
         .panel-heading Categories
         ul.list-group
-          li.list-group-item.active: a Any
-          li.list-group-item: a First category
-          li.list-group-item: a Second category
-          li.list-group-item: a Third category
+          li.list-group-item.active: a href=projects_path Any
+          - @categories.each do |category|
+            li.list-group-item: a = category.name
