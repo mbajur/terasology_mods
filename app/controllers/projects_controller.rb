@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :get_categories
+  before_filter :authenticate_user!, :only => [:edit, :import, :update, :destroy]
 
   # GET /projects
   # GET /projects.json
