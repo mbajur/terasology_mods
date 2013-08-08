@@ -58,5 +58,8 @@ module TerasologyMods
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # If you would like to remove unused tag objects after removing taggings, add:
+    ActsAsTaggableOn.remove_unused_tags = true
   end
 end

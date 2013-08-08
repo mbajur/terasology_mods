@@ -7,9 +7,8 @@
             h3.panel-title.pull-left 
               = link_to project.name, project
             ul.list-inline.pull-right
-              li: a.label.label-success Category 1
-              li: a.label.label-success Category 2
-              li: a.label.label-success Category 3
+              - project.categories.each do |category|
+                li: a.label.label-success = category.name
             .clearfix
 
           .body
