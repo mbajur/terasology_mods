@@ -39,7 +39,7 @@ class ServicesController < ApplicationController
         omniauth['extra']['raw_info']['email'] ? email =  omniauth['extra']['raw_info']['email'] : email = ''
         omniauth['extra']['raw_info']['name'] ? name =  omniauth['extra']['raw_info']['name'] : name = ''
         omniauth['extra']['raw_info']['id'] ?  uid =  omniauth['extra']['raw_info']['id'] : uid = ''
-        omniauth['extra']['raw_info']['login'] ?  login =  omniauth['extra']['raw_info']['login'] : login = ''
+        omniauth['extra']['raw_info']['login'] ? login =  omniauth['extra']['raw_info']['login'] : login = ''
         omniauth['provider'] ? provider =  omniauth['provider'] : provider = ''
       # elsif service_route == 'twitter'
       #   email = ''    # Twitter API never returns the email address
@@ -71,7 +71,7 @@ class ServicesController < ApplicationController
               existinguser = User.find_by_email(email)
               if existinguser
                 # map this new login method via a service provider to an existing account if the email address is the same
-                existinguser.services.create(:provider => provider, :uid => uid, :uname => name, :uemail => email)
+                existinguser.services.create(:provider => provider, :uid => uid, :uname => login, :uemail => email)
                 flash[:notice] = 'Sign in via ' + provider.capitalize + ' has been added to your account ' + existinguser.email + '. Signed in successfully!'
                 sign_in_and_redirect(:user, existinguser)
               else

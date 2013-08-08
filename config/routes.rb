@@ -1,6 +1,7 @@
 TerasologyMods::Application.routes.draw do
-  resources :projects
-
+  resources :projects do
+  	get 'import/:username/:name', to: 'projects#import', :on => :collection, :as => :import_repo
+  end
 
   devise_for :users
 

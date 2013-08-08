@@ -1,0 +1,21 @@
+.container
+  .row
+    .col-lg-8.col-lg-offset-2
+      h1 Select repository to import:
+
+      - if @project.errors.any?
+          div id="error_explanation"
+            h2 
+              = pluralize(@project.errors.count, "error") 
+              | prohibited this project from being saved:
+
+            ul
+              - @project.errors.full_messages.each do |msg|
+                li= msg
+
+      .list-group
+        - @repos.each do |repo|
+        	
+          = link_to import_repo_projects_path(repo.owner.login, repo.name), :method => :post, class: 'list-group-item' do
+            h4.list-group-item-heading= repo.name
+            p.list-group-item-text= repo.description
