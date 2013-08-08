@@ -66,6 +66,12 @@ class ProjectsController < ApplicationController
     @repos   = Octokit.repositories current_user.services.first.uname
     @repo    = Octokit.repo params[:username] + '/' + params[:name]
 
+    # Prevent user from adding repos that don't belongs to him.
+    if current_user.services.first.uid.to_i != @repo.owner.id
+      redirect_to new_project_path, notice: 'You can import ony your repos.'
+      return
+    end
+
     @project.g_id              = @repo.id
     @project.name              = @repo.name
     @project.full_name         = @repo.full_name
@@ -81,23 +87,6 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.save
         format.html { redirect_to edit_project_path(@project), notice: 'Project was successfully imported.' }
-        format.json { render json: @project, status: :created, location: @project }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # POST /projects
-  # POST /projects.json
-  def create
-    @project = Project.new(params[:project])
-    @project.user = current_user
-
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }

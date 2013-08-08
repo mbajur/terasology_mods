@@ -28,6 +28,11 @@ body
           | Sign-in with GitHub
           i.icon-github<
 
+  - if notice
+    .container
+      .row
+        .alert = notice
+
   = yield
 
   = javascript_include_tag "application"
