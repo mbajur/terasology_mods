@@ -1,4 +1,6 @@
 TerasologyMods::Application.routes.draw do
+  get "users/show"
+
   resources :projects do
   	get 'import/:username/:name', to: 'projects#import', :on => :collection, :as => :import_repo
   end
