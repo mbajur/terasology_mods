@@ -1,0 +1,8 @@
+.panel
+  .panel-heading
+    h3.panel-title
+      = @user
+      small<= "#{@user.user_name}"
+
+  a.thumbnail
+    = image_tag avatar_url(@user, 238)

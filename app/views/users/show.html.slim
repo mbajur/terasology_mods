@@ -1,0 +1,13 @@
+.container
+  .row
+    .col-lg-9
+      - @projects.each do |project|
+        = render 'projects/single', project: project
+
+    .col-lg-3
+      = render 'sidebar/widget_user_info'
+
+      - if current_user == @user
+        a.btn.btn-default.btn-lg.col-lg-12 href=new_project_path
+          i.icon-plus>
+          | Add project

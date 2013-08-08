@@ -3,26 +3,31 @@ html
 	head
 	  title TerasologyMods
 	  = stylesheet_link_tag    "application", :media => "all"
-    = stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css"
-	  = javascript_include_tag "application"
+    = stylesheet_link_tag    "//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css"
 	  = csrf_meta_tags
 
 body
 
   .navbar
     .container
-      a.navbar-brand TerasologyMods
+      a.navbar-brand href=root_path TerasologyMods
 
       ul.nav.navbar-nav
-        li.active: a Recent
-        li: a Updated
-        li: a Popular
+        li: a href=root_path Popular
+        li: a href=recent_path Recent
+        li: a href=updated_path Updated
 
       - if user_signed_in?
-        a.btn.navbar-btn.btn-default.pull-right
+        = link_to destroy_user_session_path, :method => :delete, class: 'btn navbar-btn btn-default pull-right' do
           i.icon-off
         p.navbar-text.pull-right
-          | Signed in as 
-          a= current_user
+          | Signed in as
+          a< href=user_path(current_user) = current_user
+      - else
+        a.btn.navbar-btn.btn-default.pull-right href="/users/auth/github"
+          | Sign-in with GitHub
+          i.icon-github<
 
   = yield
+
+  = javascript_include_tag "application"

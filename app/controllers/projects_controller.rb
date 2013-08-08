@@ -4,12 +4,26 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.order('watchers_count DESC')
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
     end
+  end
+
+  # GET /recent
+  # GET /projects.json
+  def recent
+    @projects = Project.order('created_at DESC')
+    render action: 'index'
+  end
+
+  # GET /recent
+  # GET /projects.json
+  def updated
+    @projects = Project.order('g_updated_at DESC')
+    render action: 'index'
   end
 
   def category
@@ -66,7 +80,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully imported.' }
+        format.html { redirect_to edit_project_path(@project), notice: 'Project was successfully imported.' }
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }

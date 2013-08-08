@@ -1,4 +1,4 @@
-.panel
+.panel.projects-single
   .panel-heading
     h3.panel-title.pull-left 
       = link_to project.name, project
@@ -11,9 +11,12 @@
     p.lead.text-muted = project.description
 
   .panel-footer
-    .pull-left.author
-      = image_tag avatar_url(project.user), size: '14x14'
-      a = project.user
+    .media.author.pull-left
+      .pull-left
+        a href=user_path(project.user) = image_tag avatar_url(project.user), size: '14x14'
+      .media-body
+        a href=user_path(project.user) = project.user
+
     .pull-right.github-stats
       ul.list-inline
         li: a.label.label-default href=repository_page_url(project, 'stargazers') title="Stargazers"
