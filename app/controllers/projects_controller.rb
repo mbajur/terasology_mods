@@ -73,7 +73,7 @@ class ProjectsController < ApplicationController
 
     # Prevent user from adding repos that don't belongs to him.
     if current_user.services.first.uid.to_i != @repo.owner.id
-      redirect_to new_project_path, notice: 'You can import ony your repos.'
+      redirect_to new_project_path, notice: 'You can import only your repos.'
       return
     end
 
