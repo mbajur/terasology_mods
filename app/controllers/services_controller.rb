@@ -82,7 +82,7 @@ class ServicesController < ApplicationController
                 user = User.new :email => email, :password => SecureRandom.hex(10), :display_name => name, :user_name => login
 
                 # add this authentication service to our new user
-                user.services.build(:provider => provider, :uid => uid, :uname => name, :uemail => email)
+                user.services.build(:provider => provider, :uid => uid, :uname => login, :uemail => email)
 
                 # do not send confirmation email, we directly save and confirm the new record
                 user.skip_confirmation!
@@ -104,7 +104,7 @@ class ServicesController < ApplicationController
           # check if this service is already linked to his/her account, if not, add it
           auth = Service.find_by_provider_and_uid(provider, uid)
           if !auth
-            current_user.services.create(:provider => provider, :uid => uid, :uname => name, :uemail => email)
+            current_user.services.create(:provider => provider, :uid => uid, :uname => login, :uemail => email)
             flash[:notice] = 'Sign in via ' + provider.capitalize + ' has been added to your account.'
             redirect_to services_path
           else
