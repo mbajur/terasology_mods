@@ -8,4 +8,5 @@ class Project < ActiveRecord::Base
   validates :category_list, presence: { message: 'Please pick at least one category.' }, :on => :update
 
   acts_as_taggable_on :categories
+  acts_as_indexed :fields => [:name, :description]
 end

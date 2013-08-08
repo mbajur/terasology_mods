@@ -5,7 +5,11 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.order('watchers_count DESC')
+    if params[:q]
+      @projects = Project.find_with_index params[:q]
+    else
+      @projects = Project.order('watchers_count DESC')
+    end
 
     respond_to do |format|
       format.html # index.html.erb

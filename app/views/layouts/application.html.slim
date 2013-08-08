@@ -8,7 +8,7 @@ html
 
 body
 
-  .navbar
+  .navbar#nav-main
     .container
       a.navbar-brand href=root_path TerasologyMods
 
@@ -17,8 +17,8 @@ body
         li: a href=recent_path Recent
         li: a href=updated_path Updated
 
-      = form_tag projects_path, method: :get, html: { class: 'navbar-form pull-left' } do
-        = text_field_tag :q, params[:q], class: 'form-control'
+      = form_tag projects_path, method: :get, class: 'navbar-form pull-left', id: 'search-form' do
+        = text_field_tag :q, params[:q], class: 'form-control', placeholder: 'Search...'
 
       - if user_signed_in?
         = link_to destroy_user_session_path, :method => :delete, class: 'btn navbar-btn btn-default pull-right' do
