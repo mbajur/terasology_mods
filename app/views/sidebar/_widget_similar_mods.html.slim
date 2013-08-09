@@ -1,0 +1,6 @@
+.panel.no-content
+  .panel-heading
+    h3.panel-title Similar mods
+  ul.list-group
+    - @project.find_similar.each do |project|
+      li.list-group-item= link_to project.name, project

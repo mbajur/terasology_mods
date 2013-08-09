@@ -5,13 +5,11 @@
 
     .col-lg-3
 
-    	a.btn.btn-default.col-lg-12 href=edit_project_path(@project)
-    		i.icon-pencil>
-    		| Edit project
-    	br
-    	br
+      a.btn.btn-default.col-lg-12 href=edit_project_path(@project)
+        i.icon-pencil>
+        | Edit project
+      br
+      br
 
-    	.panel
-      		.panel-heading
-      			h3.panel-title Other in this category
-      		p Not implemented yet.
+      = render 'sidebar/widget_similar_mods'
+      = render 'sidebar/widget_others_from_user'

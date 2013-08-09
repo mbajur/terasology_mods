@@ -1,0 +1,6 @@
+.panel.no-content
+  .panel-heading
+    h3.panel-title Other from #{@project.user.user_name}
+  ul.list-group
+    - @project.find_other_from_user(@project.user).each do |project|
+      li.list-group-item= link_to project.name, project

@@ -9,4 +9,16 @@ class Project < ActiveRecord::Base
 
   acts_as_taggable_on :categories
   acts_as_indexed :fields => [:name, :description]
+
+  # Gets similar projects based on
+  # categories this project is assigned to.
+  def find_similar
+  	categories = self.category_list
+  	Project.tagged_with(categories, :match_all => true).limit(5)
+  end
+
+  def find_other_from_user(user = nil)
+  	user ||= self.user
+  	user.projects.order('watchers_count DESC').limit(5)
+  end
 end
