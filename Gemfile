@@ -15,6 +15,8 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-github'
 
+gem 'cancan'
+
 gem 'octokit'
 
 gem 'acts-as-taggable-on'
